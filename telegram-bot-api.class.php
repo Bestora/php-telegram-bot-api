@@ -27,13 +27,9 @@ class TelegramBot {
   function __call($method, $param){
     $url = 'https://api.telegram.org/bot'.$this->token.'/'.$method;
 
-    $param_string = "";
-    foreach($param as $key=>$value) { $param_string .= $key.'='.$value.'&'; }
-    rtrim($param_string, '&');
-
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, count($param));
+    curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
