@@ -120,7 +120,7 @@ class TelegramBot {
   {
     $param = array(
       "chat_id" => $chat_id,
-      "photo" => $photo,
+      "photo" => '@'.$photo,
     );
 
     if($caption !== 0){
