@@ -77,6 +77,9 @@ class TelegramBot{
       }
   }
 
+  function getChatId() {
+      return $this->data['message']['chat']['id'];
+  }
   /*
   getUpdates
     Use this method to receive incoming updates using long polling (wiki). An Array of Update objects is returned.
