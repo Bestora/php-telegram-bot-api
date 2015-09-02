@@ -34,7 +34,7 @@ class TelegramBot {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, count($param));
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $param_string);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result_raw = curl_exec($ch);
