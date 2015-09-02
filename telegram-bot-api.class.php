@@ -15,13 +15,15 @@
 */
 class TelegramBot {
   private $token;
-
+  // Data from Webhook
+  private $data;
   const ReplyKeyboardMarkup = "ReplyKeyboardMarkup";
   const ReplyKeyboardHide = "ReplyKeyboardHide";
   const ForceReply = "ForceReply";
 
   function __construct($token){
     $this->token = $token;
+    $this->data = json_decode(file_get_contents('php://input'),true);
   }
 
   function __call($method, $param){
@@ -45,6 +47,14 @@ class TelegramBot {
     }
 
     return $result;
+  }
+  
+  /*
+   getInput
+     get the Input from the Webhook
+  */
+  function getInput() {
+      return $this->data;
   }
 
   /*
