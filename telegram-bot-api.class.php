@@ -13,13 +13,22 @@
     echo ($e->getCode());
   }
 */
-class TelegramBot {
+class TelegramBot{
   private $token;
   // Data from Webhook
   private $data;
   const ReplyKeyboardMarkup = "ReplyKeyboardMarkup";
   const ReplyKeyboardHide = "ReplyKeyboardHide";
   const ForceReply = "ForceReply";
+
+  const typing = "typing";
+  const upload_photo = "upload_photo";
+  const record_video = "record_video";
+  const upload_video = "upload_video";
+  const record_audio = "record_audio";
+  const upload_audio = "upload_audio";
+  const upload_document = "upload_document";
+  const find_location = "find_location";
 
   function __construct($token){
     $this->token = $token;
@@ -94,8 +103,7 @@ class TelegramBot {
     reply_to_message_id       Integer                                                 Optional  If the message is a reply, ID of the original message
     reply_markup              ReplyKeyboardMarkup or ReplyKeyboardHide or ForceReply  Optional  Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
   */
-  function sendMessage($chat_id, $text, $disable_web_page_preview = false, $reply_to_message_id = false, $reply_markup = false)
-  {
+  function sendMessage($chat_id, $text, $disable_web_page_preview = false, $reply_to_message_id = false, $reply_markup = false){
     $param = array(
       "chat_id" => $chat_id,
       "text" => $text,
@@ -128,9 +136,13 @@ class TelegramBot {
   */
   function sendPhoto($chat_id, $photo, $caption = false, $reply_to_message_id = false, $reply_markup = false)
   {
+    if(!is_numeric($photo)){
+      $photo = '@'.$photo;
+    }
+
     $param = array(
       "chat_id" => $chat_id,
-      "photo" => '@'.$photo,
+      "photo" => $photo,
     );
 
     if($caption !== 0){
@@ -167,8 +179,7 @@ class TelegramBot {
     "upload_document"                for general files,
     "find_location"                  for location data.
   */
-  function sendChatAction($chat_id, $action)
-  {
+  function sendChatAction($chat_id, $action){
     $param = array(
       "chat_id" => $chat_id,
       "action" => $action,
