@@ -65,6 +65,17 @@ class TelegramBot{
   function getInput() {
       return $this->data;
   }
+/*
+ returns the function name, if called
+*/
+  function getCommand() {
+      preg_match('/\/([a-zA-Z0-9]+)/',$this->data['message']['text'],$match);
+      if(!empty($match[1])) {
+          return $match[1];
+      } else {
+          return null;
+      }
+  }
 
   /*
   getUpdates
