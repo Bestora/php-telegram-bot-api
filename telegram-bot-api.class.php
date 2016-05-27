@@ -141,7 +141,9 @@ class TelegramBot{
     if($reply_markup !== false){
       $param['reply_markup'] = $reply_markup;
     }
-
+   
+    $param['parse_mode'] = "Markdown";
+ 
     $result = $this->__call(__FUNCTION__, $param);
     return $result;
   }
