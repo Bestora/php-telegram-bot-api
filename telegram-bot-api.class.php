@@ -162,6 +162,7 @@ class TelegramBot{
   function sendPhoto($chat_id, $photo, $caption = false, $reply_to_message_id = false, $reply_markup = false)
   {
     if(!is_numeric($photo)){
+      // für PHP7: $photo = new \CurlFile($photo);
       $photo = '@'.$photo;
     }
 
